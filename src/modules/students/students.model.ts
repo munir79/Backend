@@ -105,4 +105,4 @@ const StudentSchema=new Schema<TStudent>(
   }
 )
 
-export const Student=model<TStudent>("Student",StudentSchema)
+export const StudentModel=model<TStudent>("Student",StudentSchema)
