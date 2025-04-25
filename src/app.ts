@@ -5,6 +5,7 @@ import { StudentRoutes } from './modules/students/student.route'
 import { UserRouter } from './modules/Users/user.route'
 import { error } from 'console'
 import GlobalErrorHandelars from './app/middlewares/globalErrorHAndelars'
+import notfound from './app/middlewares/notfound'
 // const port = 3000
 
 //parser
@@ -18,6 +19,9 @@ app.get('/', (req:Request, res:Response) => {
   res.send('Hello World!')
 })
 
+
+// ***************************not found middleware ******************************
+app.use(notfound);
 
 // **************************************global error handeling *******************
 
