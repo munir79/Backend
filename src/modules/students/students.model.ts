@@ -64,6 +64,7 @@ const StudentSchema=new Schema<TStudent>(
     name:UserNameSchema,
     gender:{
       type:String,
+      required:true,
       enum:{
         values:['female','male']
       }

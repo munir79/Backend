@@ -3,10 +3,10 @@
 
 // ---------------------------create a student ---------------------------------------
 
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import { UserService } from "./user.service";
 
-const createStudentControllers = async (req: Request, res: Response) => {
+const createStudentControllers = async (req: Request, res: Response,next:NextFunction) => {
   try {
     const {password, student: StudentData } = req.body;
     // const ZodParseData=StudentZodSchema.parse(StudentData);
@@ -21,7 +21,8 @@ const createStudentControllers = async (req: Request, res: Response) => {
       data: result,
     });
   } catch (err) {
-    console.log(err);
+    // console.log(err);
+    next(err)
   }
 };
 

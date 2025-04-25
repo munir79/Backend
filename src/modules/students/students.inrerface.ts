@@ -1,3 +1,4 @@
+import { Types } from "mongoose";
 
 
 
@@ -27,6 +28,7 @@ export type TStudent = {
   id: string;
   password:string;
   name: TUserName;
+  user:Types.ObjectId
   
 
   gender: "female" | "male";
