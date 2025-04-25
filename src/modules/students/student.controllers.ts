@@ -2,28 +2,9 @@
 //from client we can send data many ways like by params , by queries,and all
 import { Request, Response } from "express";
 import { StudentServices } from "./student.service";
-import { request } from "http";
 
 
-// ---------------------------create a student ---------------------------------------
 
-const createStudentControllers = async (req: Request, res: Response) => {
-  try {
-    const { student: StudentData } = req.body;
-
-    const result = await StudentServices.CreateStudentIntoDb(StudentData);
-
-    //
-
-    res.status(200).json({
-      sucess: true,
-      message: "Student Created SucessFully",
-      data: result,
-    });
-  } catch (err) {
-    console.log(err);
-  }
-};
 
 //--------------------------- get all student controllers----------------------------------------
 const getAllStudentControllers = async (req: Request, res: Response) => {
@@ -55,7 +36,7 @@ const getASingleStudentControllers = async (req: Request, res: Response) => {
 };
 
 export const StudentControllers = {
-  createStudentControllers,
+  
   getAllStudentControllers,
   getASingleStudentControllers
 };

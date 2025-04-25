@@ -68,6 +68,11 @@ const StudentSchema=new Schema<TStudent>(
         values:['female','male']
       }
     },
+    user:{
+      type:Schema.Types.ObjectId,
+      required:[true,'user is required'],
+      ref:"UserModel"
+    },
     dateOfBirth:{
       type:String,
       
@@ -75,7 +80,8 @@ const StudentSchema=new Schema<TStudent>(
     },
     email:{
       type:String,
-      required:true
+      required:true,
+      unique:true,
     },
     contactNumber:{
       type:String,
@@ -97,6 +103,10 @@ const StudentSchema=new Schema<TStudent>(
     },
     localGuardian:LocalGurdianSchema,
     profileImage:{
+      type:String,
+      required:true
+    },
+    password:{
       type:String,
       required:true
     }

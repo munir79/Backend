@@ -42,7 +42,7 @@ export type TStudent = {
 
 
   avatar?: string;
-  isDeleted: false;
+  
 
   
 };
