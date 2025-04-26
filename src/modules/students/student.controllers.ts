@@ -4,6 +4,7 @@ import { NextFunction, Request, Response } from "express";
 import { StudentServices } from "./student.service";
 import sendResponse from "../../app/utils/sendResponse";
 import  HttpStatus  from "http-status";
+import { promise } from "zod";
 
 
 
@@ -24,6 +25,16 @@ import  HttpStatus  from "http-status";
 //   }
 // };
 
+
+// ****************************************create a higher order function ****************************
+// avoaid try catch 
+const  catchAsync=(fn)=>{
+  return (req:Request,res:Response,next:NextFunction)=>{
+   Promise.resolve(fn(req,res,next)).catch((err)=>next(err))
+  }
+}
+
+// **********************************************end create a higher order function 
 
 
 // ********************************error handeling with globally********************************** 
