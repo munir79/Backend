@@ -5,6 +5,7 @@ import { StudentServices } from "./student.service";
 import sendResponse from "../../app/utils/sendResponse";
 import  HttpStatus  from "http-status";
 import { promise } from "zod";
+import { RequestHandler } from "express-serve-static-core";
 
 
 
@@ -28,7 +29,7 @@ import { promise } from "zod";
 
 // ****************************************create a higher order function ****************************
 // avoaid try catch 
-const  catchAsync=(fn)=>{
+const  catchAsync=(fn:RequestHandler)=>{
   return (req:Request,res:Response,next:NextFunction)=>{
    Promise.resolve(fn(req,res,next)).catch((err)=>next(err))
   }
@@ -38,8 +39,8 @@ const  catchAsync=(fn)=>{
 
 
 // ********************************error handeling with globally********************************** 
-const getAllStudentControllers = async (req: Request, res: Response,next:NextFunction) => {
-  try {
+const getAllStudentControllers =catchAsync( async (req, res,next) => {
+ 
     const result = await StudentServices.getAllStudentFromDB();
     // res.status(200).json({
     //   sucess: true,
@@ -53,11 +54,8 @@ const getAllStudentControllers = async (req: Request, res: Response,next:NextFun
       message:"get all student SucessFully",
       data:result
     })
-  } catch (err) {
-    // console.log(err);
-    next(err);
-  }
-};
+ 
+});
 
 // ------------------------------------- geta singleStudent from db--------------------------------
 const getASingleStudentControllers = async (req: Request, res: Response,next:NextFunction) => {
