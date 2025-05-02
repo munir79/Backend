@@ -107,6 +107,10 @@ const StudentSchema=new Schema<TStudent>(
       type:String,
       required:true
     },
+    admissionSemistar:{
+        type:Schema.Types.ObjectId,
+        ref:'academicSemistar'
+    },
     password:{
       type:String,
       required:true

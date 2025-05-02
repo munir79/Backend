@@ -38,6 +38,7 @@ z.object({
     permannetAddress: z.string().min(1, "Permanent address is required"),
     localGuardian: LocalGuardianZodSchema,
     profileImage: z.string().min(1, "Profile image is required"),
+    admissionSemistar:z.string(),
     password: z.string().min(1, "Password is required"),
   })
 })

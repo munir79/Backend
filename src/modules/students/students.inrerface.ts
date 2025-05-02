@@ -41,6 +41,7 @@ export type TStudent = {
   permannetAddress: string;
   localGuardian:TLocalGuardian;
   profileImage:string;
+  admissionSemistar:Types.ObjectId;
 
 
   avatar?: string;

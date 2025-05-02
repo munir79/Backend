@@ -1,10 +1,13 @@
 import config from "../../app/config"
+import { TAcademicSemistar } from "../AcademicSemistar/AcademicSemistar.interface"
+import { AcademicSemistarModel } from "../AcademicSemistar/AcademicSemistar.model"
 import { TStudent } from "../students/students.inrerface"
 import { StudentModel } from "../students/students.model"
 import { TUser } from "./user.interface"
 import { UserModel } from "./users.model"
+import { generatedStudentId } from "./Users.utils"
 
-const CreateStudentIntoDb=async (password:string,studentData:TStudent)=>{
+const CreateStudentIntoDb=async (password:string,payLoad:TStudent)=>{
 
 // create a object  
 const user:Partial<TUser>={}
@@ -19,16 +22,21 @@ user.password=password || (config.default_password as string);
 
     // set user role 
     user.role='student'
-    user.id='201002050'
+
+   
+
+    //  find Academic Semistar info 
+    const admissionsemistar=await AcademicSemistarModel.findById(payLoad.admissionSemistar);
+    user.id=generatedStudentId(admissionsemistar)
     //cretae a user 
     const result=await UserModel.create(user);
 
     // create a student 
     if(Object.keys(result).length){
-        studentData.id=result.id;
-        studentData.user=result._id;
+        payLoad.id=result.id;
+        payLoad.user=result._id;
 
-        const NewStudent= await StudentModel.create(studentData);
+        const NewStudent= await StudentModel.create(payLoad);
         return NewStudent
     }
 

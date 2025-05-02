@@ -35,4 +35,6 @@ const UserSchema=new Schema<TUser>({
 })
 
 
+
+
 export const UserModel =model<TUser>('usermodel',UserSchema)
